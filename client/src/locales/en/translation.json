@@ -1,0 +1,14 @@
+{
+    "welcome": "Welcome to Harvesta",
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "role": "Role",
+    "language": "Language",
+    "farmer": "Farmer",
+    "buyer": "Buyer",
+    "admin": "Admin",
+    "submit": "Submit"
+}
