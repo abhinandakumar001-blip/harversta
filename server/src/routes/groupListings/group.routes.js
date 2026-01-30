@@ -40,10 +40,10 @@ router.post('/join', protect, isFarmer, async (req, res) => {
         }
 
         // Find or create group listing for this crop and location
-        // We use case-insensitive check often, but for MVP standard string match
+        // Using regex for case-insensitive exact match
         let group = await GroupListing.findOne({
-            cropName: product.cropName,
-            location: product.location
+            cropName: { $regex: new RegExp(`^${product.cropName}$`, 'i') },
+            location: { $regex: new RegExp(`^${product.location}$`, 'i') }
         });
 
         if (!group) {

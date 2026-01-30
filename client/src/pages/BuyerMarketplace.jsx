@@ -57,7 +57,7 @@ const BuyerMarketplace = () => {
             pRes = pRes.filter(p => p.pricePerKg <= Number(filters.maxPrice));
             gRes = gRes.filter(g => g.pricePerKg <= Number(filters.maxPrice));
         }
-        setFilteredProducts(pRes);
+        setFilteredProducts(pRes.filter(p => !p.isGroupEligible));
         setFilteredGroups(gRes);
     }, [filters, products, groups]);
 

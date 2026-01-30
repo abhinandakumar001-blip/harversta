@@ -157,7 +157,7 @@ const GroupSellingSection = ({ refreshTrigger, onGroupAction }) => {
                                                 <div>
                                                     <span className="text-gray-500 block text-xs">{t('participants')}</span>
                                                     <span className="font-bold text-gray-900 flex items-center gap-1">
-                                                        <Users size={14} /> {group.farmers.length}
+                                                        <Users size={14} /> {new Set(group.farmers.map(f => f.farmer._id || f.farmer)).size}
                                                     </span>
                                                 </div>
                                             </div>
