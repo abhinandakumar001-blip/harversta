@@ -91,5 +91,21 @@
     "leave": "Leave",
     "inGroup": "In Group",
     "notInGroup": "Not In Group",
-    "bulkSupplyBadge": "Bulk Supply"
+    "bulkSupplyBadge": "Bulk Supply",
+    "getPriceSuggestion": "Get Price Suggestion",
+    "pleaseEnterCropFirst": "Please enter a crop name first",
+    "weeklyMarketReference": "Weekly Market Reference",
+    "found": "Found",
+    "suggestedFarmGatePrice": "Suggested Farm Gate Price",
+    "retailRange": "Retail Range",
+    "applyPrice": "Apply Price",
+    "basedOnGovtData": "Based on last week's government data. Reference only.",
+    "priceAdvisory": "Price Advisory",
+    "priceAdvisoryMessage": "Your entered price is significantly higher than last week's market reference (₹{price}). This may reduce buyer interest.",
+    "discoverProduce": "Discover fresh produce from local farmers",
+    "individualListings": "Individual Listings",
+    "directFromFarmers": "Direct from individual farmers",
+    "organic": "Organic",
+    "stock": "Stock",
+    "totalQuantity": "Total Quantity"
 }

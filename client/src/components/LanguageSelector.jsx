@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 const languages = [
     { code: 'en', name: 'English' },
-    { code: 'hi', name: 'Hindi' },
     { code: 'ml', name: 'Malayalam' },
-    { code: 'ta', name: 'Tamil' }
+    { code: 'hi', name: 'Hindi' }
 ];
 
 const LanguageSelector = () => {

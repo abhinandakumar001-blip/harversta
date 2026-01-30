@@ -139,7 +139,7 @@ const AddProductForm = ({ onProductAdded, editingProduct, onCancel }) => {
                             onClick={() => fetchMarketPrice(true)}
                             className="text-xs text-green-600 font-bold hover:underline"
                         >
-                            Get Price Suggestion
+                            {t('getPriceSuggestion')}
                         </button>
                     </label>
                     <input
@@ -160,8 +160,8 @@ const AddProductForm = ({ onProductAdded, editingProduct, onCancel }) => {
                         <div className="flex items-start gap-2 mt-2 text-amber-700 bg-amber-50 p-2 rounded-lg text-xs border border-amber-100">
                             <span className="text-lg">⚠️</span>
                             <div>
-                                <p className="font-semibold">Price Advisory</p>
-                                <p>Your entered price is significantly higher than last week’s market reference (₹{marketData.base_price}). This may reduce buyer interest.</p>
+                                <p className="font-semibold">{t('priceAdvisory')}</p>
+                                <p>{t('priceAdvisoryMessage', { price: marketData.base_price })}</p>
                             </div>
                         </div>
                     )}
@@ -170,16 +170,16 @@ const AddProductForm = ({ onProductAdded, editingProduct, onCancel }) => {
                         <div className="absolute top-full left-0 right-0 z-10 mt-2 p-4 bg-green-50 border border-green-200 rounded-xl shadow-lg animate-in slide-in-from-top-2">
                             <div className="flex justify-between items-start mb-2">
                                 <span className="text-xs font-bold text-green-800 bg-green-100 px-2 py-0.5 rounded-full ring-1 ring-green-600/20">
-                                    Weekly Market Reference
+                                    {t('weeklyMarketReference')}
                                 </span>
                                 <button type="button" onClick={() => setSuggestion(null)} className="text-green-800 hover:text-green-900">&times;</button>
                             </div>
                             <div className="text-sm text-gray-800 mb-1">
-                                <span className="font-semibold block text-green-900 pb-1">Found: {suggestion.crop}</span>
-                                Suggested Farm Gate Price: <span className="font-bold">₹{suggestion.base_price}</span> / {suggestion.unit}
+                                <span className="font-semibold block text-green-900 pb-1">{t('found')}: {suggestion.crop}</span>
+                                {t('suggestedFarmGatePrice')}: <span className="font-bold">₹{suggestion.base_price}</span> / {suggestion.unit}
                             </div>
                             <div className="text-xs text-gray-500 mb-3">
-                                Retail Range: ₹{suggestion.retail_range}
+                                {t('retailRange')}: ₹{suggestion.retail_range}
                             </div>
                             <button
                                 type="button"
@@ -189,10 +189,10 @@ const AddProductForm = ({ onProductAdded, editingProduct, onCancel }) => {
                                 }}
                                 className="w-full py-1.5 bg-green-600 text-white text-xs font-bold rounded-lg hover:bg-green-700 transition-colors shadow-sm"
                             >
-                                Apply Price
+                                {t('applyPrice')}
                             </button>
                             <p className="text-[10px] text-gray-400 mt-2 italic border-t border-green-100 pt-1">
-                                Based on last week's government data. Reference only.
+                                {t('basedOnGovtData')}
                             </p>
                         </div>
                     )}

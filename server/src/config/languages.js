@@ -1,8 +1,7 @@
 export const languages = [
     'en',
-    'hi',
     'ml',
-    'ta'
+    'hi'
 ];
 
 export default languages;

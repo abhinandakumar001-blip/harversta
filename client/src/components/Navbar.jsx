@@ -34,7 +34,7 @@ const Navbar = () => {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-6">
-                        {/* <LanguageSelector /> */}
+                        <LanguageSelector />
 
                         {token ? (
                             <div className="flex items-center gap-4 bg-gray-50/50 px-4 py-1.5 rounded-full border border-gray-100">
@@ -64,7 +64,7 @@ const Navbar = () => {
                                     to="/register"
                                     className="px-5 py-2 rounded-full bg-gradient-to-r from-green-600 to-emerald-500 text-white font-medium text-sm hover:shadow-lg hover:shadow-green-200 transition-all transform hover:-translate-y-0.5"
                                 >
-                                    Get Started
+                                    {t('register')}
                                 </Link>
                             </div>
                         )}
@@ -72,7 +72,7 @@ const Navbar = () => {
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center gap-4">
-                        {/* <LanguageSelector /> */}
+                        <LanguageSelector />
                         <button
                             onClick={toggleMenu}
                             className="p-2 rounded-md text-gray-500 hover:text-green-600 hover:bg-gray-100 focus:outline-none transition-colors"

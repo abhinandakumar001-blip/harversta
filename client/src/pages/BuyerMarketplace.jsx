@@ -73,7 +73,7 @@ const BuyerMarketplace = () => {
                     <header className="flex flex-col md:flex-row justify-between items-center gap-6">
                         <div>
                             <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{t('buyerMarketplace')}</h1>
-                            <p className="text-gray-500 mt-2">Discover fresh produce from local farmers</p>
+                            <p className="text-gray-500 mt-2">{t('discoverProduce')}</p>
                         </div>
                     </header>
 
@@ -135,7 +135,7 @@ const BuyerMarketplace = () => {
                                             <span className="font-bold text-lg text-purple-900">₹{group.pricePerKg}</span>
                                         </div>
                                         <div className="flex justify-between items-center py-2 border-b border-purple-100">
-                                            <span className="text-gray-600">Total Quantity</span>
+                                            <span className="text-gray-600">{t('totalQuantity')}</span>
                                             <span className="font-bold text-lg text-gray-900">{group.totalQuantityKg} kg</span>
                                         </div>
                                         <div className="flex justify-between items-center py-2">
@@ -159,15 +159,15 @@ const BuyerMarketplace = () => {
                 {filteredGroups.length > 0 && <div className="border-t border-gray-200 my-10"></div>}
 
                 <div className="mb-6">
-                    <h2 className="text-2xl font-bold text-gray-900">Individual Listings</h2>
-                    <p className="text-gray-500">Direct from individual farmers</p>
+                    <h2 className="text-2xl font-bold text-gray-900">{t('individualListings')}</h2>
+                    <p className="text-gray-500">{t('directFromFarmers')}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {loading ? <div className="col-span-full py-12 text-center text-gray-500">{t('loading')}...</div> : filteredProducts.map(product => (
                         <div key={product._id} className="group bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:border-green-200 transition-all duration-300 flex flex-col">
                             <div className="mb-4">
-                                <span className="inline-block px-2.5 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded-md mb-2">Organic</span>
+                                <span className="inline-block px-2.5 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded-md mb-2">{t('organic')}</span>
                                 <h3 className="text-lg font-bold text-gray-900 line-clamp-1">{product.cropName}</h3>
                                 <p className="text-sm text-gray-500">{product.farmer?.name || t('farmerName')}</p>
                             </div>
@@ -178,7 +178,7 @@ const BuyerMarketplace = () => {
                                     <span className="font-bold text-gray-900">₹{product.pricePerKg}</span>
                                 </div>
                                 <div className="flex justify-between text-gray-600">
-                                    <span>Stock:</span>
+                                    <span>{t('stock')}:</span>
                                     <span className="font-medium">{product.quantityKg} kg</span>
                                 </div>
                                 <div className="flex justify-between text-gray-600">
