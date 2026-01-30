@@ -62,6 +62,23 @@ const PlaceOrder = ({ product, onClose, onOrderPlaced }) => {
                         <p className="text-lg font-bold">
                             {t('totalPrice')}: ₹{(quantity * product.pricePerKg).toFixed(2)}
                         </p>
+                        {/* Farmer Info & Rating */}
+                        <div className="mt-3 bg-gray-50 p-3 rounded-lg border border-gray-100">
+                            <div className="flex justify-between items-center">
+                                <span className="text-gray-600 font-medium">{t('farmerName')}:</span>
+                                <span className="font-semibold text-gray-800">{product.farmer?.name}</span>
+                            </div>
+                            {product.farmer?.averageRating > 0 && (
+                                <div className="flex justify-between items-center mt-1">
+                                    <span className="text-gray-600 font-medium">Rating:</span>
+                                    <div className="flex items-center text-yellow-500 font-bold">
+                                        <span>{product.farmer.averageRating.toFixed(1)}</span>
+                                        <span className="ml-1">★</span>
+                                        <span className="ml-1 text-gray-400 font-normal text-xs">({product.farmer.totalReviews} reviews)</span>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     {error && <p className="text-red-500 mb-4">{error}</p>}

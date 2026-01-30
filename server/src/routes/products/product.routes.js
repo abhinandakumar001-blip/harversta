@@ -19,7 +19,7 @@ const isFarmer = (req, res, next) => {
 router.get('/', protect, async (req, res) => {
     try {
         const products = await Product.find({})
-            .populate('farmer', 'name')
+            .populate('farmer', 'name averageRating totalReviews')
             .sort({ createdAt: -1 });
         res.json(products);
     } catch (error) {

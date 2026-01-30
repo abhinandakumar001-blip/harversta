@@ -18,6 +18,8 @@ import groupRoutes from "./routes/groupListings/group.routes.js";
 app.use("/api/group-listings", groupRoutes);
 import marketRoutes from "./routes/market/market.routes.js";
 app.use("/api/market", marketRoutes);
+import reviewRoutes from "./routes/reviews/review.routes.js";
+app.use("/api/reviews", reviewRoutes);
 
 app.get("/", (req, res) => {
    res.send("Server is running");

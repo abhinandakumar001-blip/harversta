@@ -169,7 +169,16 @@ const BuyerMarketplace = () => {
                             <div className="mb-4">
                                 <span className="inline-block px-2.5 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded-md mb-2">{t('organic')}</span>
                                 <h3 className="text-lg font-bold text-gray-900 line-clamp-1">{product.cropName}</h3>
-                                <p className="text-sm text-gray-500">{product.farmer?.name || t('farmerName')}</p>
+                                <div className="flex justify-between items-center text-sm text-gray-500">
+                                    <p>{product.farmer?.name || t('farmerName')}</p>
+                                    {product.farmer?.averageRating > 0 && (
+                                        <div className="flex items-center text-yellow-500 font-semibold bg-yellow-50 px-2 py-0.5 rounded text-xs">
+                                            <span>{product.farmer.averageRating.toFixed(1)}</span>
+                                            <span className="ml-1 text-[10px]">★</span>
+                                            <span className="ml-1 text-gray-400 font-normal">({product.farmer.totalReviews})</span>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
                             <div className="flex-1 space-y-2 mb-4 text-sm">

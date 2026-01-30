@@ -90,17 +90,37 @@ router.get('/farmer', protect, checkRole('farmer'), async (req, res) => {
 // @desc    Update order status
 // @route   PUT /api/orders/:id/status
 // @access  Private (Farmer only)
-router.put('/:id/status', protect, checkRole('farmer'), async (req, res) => {
+router.put('/:id/status', protect, async (req, res) => {
     try {
         const { status } = req.body;
         const order = await Order.findById(req.params.id);
 
         if (order) {
-            if (order.farmer.toString() !== req.user._id.toString()) {
+            // Check authorization
+            const isFarmer = req.user.role === 'farmer' && order.farmer.toString() === req.user._id.toString();
+            const isBuyer = req.user.role === 'buyer' && order.buyer.toString() === req.user._id.toString();
+
+            if (!isFarmer && !isBuyer) {
                 return res.status(401).json({ message: 'Not authorized' });
             }
 
-            order.status = status;
+            // Logic for status updates
+            if (isFarmer) {
+                // Farmers can change to accepted, rejected, shipped (if we had it)
+                if (['accepted', 'rejected', 'shipped'].includes(status)) {
+                    order.status = status;
+                } else {
+                    return res.status(400).json({ message: 'Invalid status update for farmer' });
+                }
+            } else if (isBuyer) {
+                // Buyers can only change to 'delivered'
+                if (status === 'delivered') {
+                    order.status = status;
+                } else {
+                    return res.status(400).json({ message: 'Invalid status update for buyer' });
+                }
+            }
+
             const updatedOrder = await order.save();
             res.json(updatedOrder);
         } else {

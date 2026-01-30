@@ -3,10 +3,14 @@ import { useTranslation } from 'react-i18next';
 import api from '../api/axios';
 import LanguageSelector from '../components/LanguageSelector';
 
+import ReviewModal from '../components/orders/ReviewModal';
+
 const BuyerOrders = () => {
     const { t } = useTranslation();
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+    const [selectedOrder, setSelectedOrder] = useState(null);
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -32,6 +36,40 @@ const BuyerOrders = () => {
         }
     };
 
+    const handleMarkDelivered = async (order) => {
+        if (!window.confirm("Confirm that you have received this order?")) return;
+
+        try {
+            await api.put(`/orders/${order._id}/status`, { status: "delivered" });
+
+            // Update local state
+            setOrders(prev => prev.map(o => o._id === order._id ? { ...o, status: "delivered" } : o));
+
+            // Open Review Modal immediately
+            handleReviewClick(order);
+        } catch (error) {
+            console.error(error);
+            alert("Failed to update status");
+        }
+    };
+
+    const handleReviewClick = (order) => {
+        setSelectedOrder(order);
+        setIsReviewModalOpen(true);
+    };
+
+    const handleReviewSubmit = async (reviewData) => {
+        try {
+            await api.post('/reviews', reviewData);
+            setIsReviewModalOpen(false);
+            // Optionally disable review button locally or refetch
+            alert('Review submitted successfully!');
+        } catch (error) {
+            console.error('Error submitting review:', error);
+            alert(error.response?.data?.message || 'Error submitting review');
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gray-50 p-4 md:p-8">
             <header className="flex flex-col md:flex-row justify-between items-center mb-8 max-w-6xl mx-auto">
@@ -52,6 +90,7 @@ const BuyerOrders = () => {
                                         <th className="p-4 font-semibold text-gray-600">{t('farmerName')}</th>
                                         <th className="p-4 font-semibold text-gray-600">{t('orderStatus')}</th>
                                         <th className="p-4 font-semibold text-gray-600">Date</th>
+                                        <th className="p-4 font-semibold text-gray-600">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y">
@@ -69,6 +108,24 @@ const BuyerOrders = () => {
                                             <td className="p-4 text-gray-500 text-sm">
                                                 {new Date(order.createdAt).toLocaleDateString()}
                                             </td>
+                                            <td className="p-4">
+                                                {order.status === 'accepted' && (
+                                                    <button
+                                                        onClick={() => handleMarkDelivered(order)}
+                                                        className="text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded transition-colors mr-2"
+                                                    >
+                                                        Mark Delivered
+                                                    </button>
+                                                )}
+                                                {order.status === 'delivered' && (
+                                                    <button
+                                                        onClick={() => handleReviewClick(order)}
+                                                        className="text-sm bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded transition-colors"
+                                                    >
+                                                        Rate Farmer
+                                                    </button>
+                                                )}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -78,6 +135,13 @@ const BuyerOrders = () => {
                     </div>
                 )}
             </div>
+
+            <ReviewModal
+                isOpen={isReviewModalOpen}
+                onClose={() => setIsReviewModalOpen(false)}
+                order={selectedOrder}
+                onSubmit={handleReviewSubmit}
+            />
         </div>
     );
 };
