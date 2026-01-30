@@ -60,7 +60,7 @@ const PlaceBulkOrder = ({ group, onClose, onOrderPlaced }) => {
 
                     <div className="mb-6">
                         <p className="text-lg font-bold">
-                            {t('totalPrice')}: {(quantity * group.pricePerKg).toFixed(2)}
+                            {t('totalPrice')}: ₹{(quantity * group.pricePerKg).toFixed(2)}
                         </p>
                     </div>
 

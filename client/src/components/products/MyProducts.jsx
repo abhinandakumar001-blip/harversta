@@ -76,7 +76,7 @@ const MyProducts = ({ refreshTrigger, onEdit }) => {
                                 </div>
                                 <div className="flex justify-between items-center bg-gray-50 p-2 rounded-lg">
                                     <span className="font-medium text-gray-500">{t('pricePerKg')}</span>
-                                    <span className="font-bold text-green-700">${product.pricePerKg}</span>
+                                    <span className="font-bold text-green-700">₹{product.pricePerKg}</span>
                                 </div>
                                 <div className="flex justify-between items-center px-2">
                                     <span className="text-gray-400">{t('location')}</span>

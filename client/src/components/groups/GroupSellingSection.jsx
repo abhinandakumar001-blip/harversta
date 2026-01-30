@@ -151,7 +151,7 @@ const GroupSellingSection = ({ refreshTrigger, onGroupAction }) => {
                                             <div className="flex items-center gap-4 text-sm">
                                                 <div>
                                                     <span className="text-gray-500 block text-xs">{t('groupPrice')}</span>
-                                                    <span className="font-bold text-gray-900">${group.pricePerKg}</span>
+                                                    <span className="font-bold text-gray-900">₹{group.pricePerKg}</span>
                                                 </div>
                                                 <div className="w-px h-8 bg-gray-200"></div>
                                                 <div>

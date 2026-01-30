@@ -132,7 +132,7 @@ const BuyerMarketplace = () => {
                                     <div className="space-y-3 mb-6">
                                         <div className="flex justify-between items-center py-2 border-b border-purple-100">
                                             <span className="text-gray-600">{t('pricePerKg')}</span>
-                                            <span className="font-bold text-lg text-purple-900">${group.pricePerKg}</span>
+                                            <span className="font-bold text-lg text-purple-900">₹{group.pricePerKg}</span>
                                         </div>
                                         <div className="flex justify-between items-center py-2 border-b border-purple-100">
                                             <span className="text-gray-600">Total Quantity</span>
@@ -175,7 +175,7 @@ const BuyerMarketplace = () => {
                             <div className="flex-1 space-y-2 mb-4 text-sm">
                                 <div className="flex justify-between text-gray-600">
                                     <span>{t('pricePerKg')}:</span>
-                                    <span className="font-bold text-gray-900">${product.pricePerKg}</span>
+                                    <span className="font-bold text-gray-900">₹{product.pricePerKg}</span>
                                 </div>
                                 <div className="flex justify-between text-gray-600">
                                     <span>Stock:</span>
